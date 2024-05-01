@@ -43,7 +43,7 @@ struct ThreadView: View {
                             .frame(width: 30, height: 50)
                     }
                     .fullScreenCover(isPresented: $isPresented){
-                        GuiderDetailView()
+                        GuiderDetailTabView()
                     }
                 }
                 
