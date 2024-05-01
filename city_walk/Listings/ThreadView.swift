@@ -18,15 +18,54 @@ struct ThreadView: View {
     
     var profile_img = "Profile"
     
+    @State private var isPresented = false
+    
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         VStack(spacing: 8){
             // UPer
             HStack(alignment: .top) {
-                Image(profile_img)
-                    .resizable()
-                    .frame(maxWidth: 50, maxHeight: 50)
-                    .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                    .padding()
+                
+                Spacer()
+                    .frame(width:10,height: 13)
+                
+                // dismiss
+                VStack(){
+                    Spacer()
+                        .frame(height: 13)
+                    // dismiiss btn
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundStyle(.black)
+                            .frame(width: 30, height: 50)
+                    }
+                    .fullScreenCover(isPresented: $isPresented){
+                        GuiderDetailView()
+                    }
+                }
+                
+                // avatar
+                VStack(){
+                    Spacer()
+                        .frame(height: 14)
+                    
+                    Button(action: {
+                        //on clicked
+                        isPresented.toggle()
+                    }){
+                        Image(profile_img)
+                            .resizable()
+                            .frame(maxWidth: 50, maxHeight: 50)
+                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                            .padding(1)
+                    }
+                    
+                }
+                
+                
                 
                 VStack{
                     Text("Hippo"+"                  ")
@@ -42,6 +81,24 @@ struct ThreadView: View {
                     
                 }
                 .padding()
+                
+                Spacer()
+                    .frame(width: 60)
+                
+                // charging standard
+                VStack{
+                    Spacer()
+                        .frame(height: 18)
+                    
+                    Text("$ 200")
+                        .foregroundStyle(.red)
+                    
+                    Spacer()
+                        .frame(height: 13)
+                    
+                    Text("小时")
+                        .foregroundStyle(.black)
+                }
                 
                 Spacer()
             }
@@ -70,6 +127,7 @@ struct ThreadView: View {
                 
                 Button(action: {
                     //on clicked
+                    isPresented.toggle()
                 }){
                     Text("现在沟通")
                         .font(.title)
@@ -80,10 +138,13 @@ struct ThreadView: View {
                 .background(Color.green)
                 .cornerRadius(6)
                 .padding(3)
+                .fullScreenCover(isPresented: $isPresented){
+                    GuiderDetailView()
+                }
             }
             .padding()
         }
-    }
+        }
 }
 
 #Preview {
