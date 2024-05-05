@@ -94,6 +94,9 @@ struct GuiderDetailView: View {
                         }
                         .padding()
                     }
+                    
+                    Text("这回真没了。")
+                        .frame(height: 200)
                 }
                 .padding()
             }
@@ -120,7 +123,7 @@ struct GuiderDetailView: View {
                         .frame(width:350)
                 }
                 .frame(width: 500 ,height:50)
-                .background(Color("LightBackground"))
+                .background(Color("OverlayBackground"))
             }
             
         //}
